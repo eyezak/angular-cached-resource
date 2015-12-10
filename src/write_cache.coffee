@@ -33,7 +33,7 @@ module.exports = writeCache = ($q, providerParams, action, CachedResource, actio
       data = data.map((o) -> wrapInCachedResource o)
       for resource in data
         cacheEntry = new ResourceCacheEntry(CachedResource.$key, resource.$params()).load()
-        cacheEntry.set(resource, isDirty) unless angular.equals(cacheEntry.data, resource)
+        cacheEntry.set(resource, isDirty, true) unless angular.equals(cacheEntry.data, resource)
     else
       data = wrapInCachedResource data
       params[param] = value for param, value of data.$params()

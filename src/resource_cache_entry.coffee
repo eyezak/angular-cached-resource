@@ -20,7 +20,8 @@ module.exports = (providerParams) ->
       {@value, @dirty} = Cache.getItem(@fullCacheKey(), @defaultValue)
       @
 
-    set: (@value, dirty) ->
+    set: (value, dirty, merge) ->
+      @value = merge ? value : angular.merge(value, @value)
       @dirty = dirty
       @_update()
 
